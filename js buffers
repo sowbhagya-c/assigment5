@@ -1,0 +1,55 @@
+A buffer is a space in memory (typically RAM) that stores binary data.
+In Node.js, we can access these spaces of memory with the built-in Buffer class. 
+Buffers store a sequence of integers, similar to an array in JavaScript. Unlike arrays, you cannot change the size of a buffer once it is created.
+In Node.js we use the alloc() function of the Buffer class to create buffer.
+The Buffer object is a global object in Node.js, and it is not necessary to import it using the require keyword.
+
+//createing buffer
+const buffer = Buffer.alloc(8);
+// creating arrays using buffer
+var buf = new Buffer([10, 20, 30, 40, 50]);
+//string
+const buffer_string = Buffer.from("I am happy", "utf-8");
+
+//writing to buffer
+buf = new Buffer(56);
+len = buf.write("My name is lakshmi");
+console.log("written : "+  len);
+
+//printing a - z using ASCII values
+buf = new Buffer(26);
+for (var i = 0 ; i < 26 ; i++) {
+  buf[i] = i + 97;
+}
+console.log( buf.toString('ascii'));      
+console.log( buf.toString('ascii',0,5));  
+console.log( buf.toString('utf8',0,5));   
+console.log( buf.toString(undefined,0,5));
+
+// Concatination of strings
+var buf1 = new Buffer('SOWBHAGYA ');
+var buf2 = new Buffer('LAKSHMI');
+var buf3 = Buffer.concat([buf1,buf2]);
+
+console.log("buffer3 content: " + buffer3.toString());
+
+// comparision of strings
+var buffer1 = new Buffer('ABC');
+var buffer2 = new Buffer('ABCD');
+var result = buffer1.compare(buffer2);
+
+if(result < 0) {
+   console.log(buffer1 +" comes before " + buffer2);
+} else if(result === 0) {
+   console.log(buffer1 +" is same as " + buffer2);
+} else {
+   console.log(buffer1 +" comes after " + buffer2);
+}
+
+//length of buffer
+var buffer = new Buffer('TutorialsPoint');
+
+//length of the buffer
+console.log("buffer length: " + buffer.length);
+
+
